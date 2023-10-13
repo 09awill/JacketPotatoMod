@@ -8,6 +8,8 @@ using static KitchenData.ItemGroup;
 using System.Collections.Generic;
 using BurritoMod.Customs.BaseBurrito;
 using Unity.Entities;
+using System.Linq;
+using UnityEngine.VFX;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
@@ -17,6 +19,8 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override GameObject Prefab => Mod.Bundle.LoadAsset<GameObject>("JacketPotatoWithButter");
         public override ItemCategory ItemCategory => ItemCategory.Generic;
         public override ItemValue ItemValue => ItemValue.Medium;
+        public override Item DisposesTo => Mod.Plate;
+        public override Item DirtiesTo => Mod.DirtyPlate;
 
         public override List<ItemSet> Sets => new List<ItemSet>()
         {
@@ -37,13 +41,14 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 Min = 1,
                 Items = new List<Item>()
                 {
-                    Mod.Butter,
+                    Mod.ButterSlice,
                 }
             },
             new ItemSet()
             {
                 Max = 2,
                 Min = 1,
+                RequiresUnlock= true,
                 Items = new List<Item>()
                 {
                     Mod.ChoppedCheese,
@@ -55,13 +60,13 @@ namespace JacketPotatoMod.Customs.JacketPotato
         {
                 new()
                 {
-                    Text = "JP",
+                    Text = "P",
                     Item = Mod.JacketPotato
                 },
                 new()
                 {
-                    Text = "B",
-                    Item = Mod.Butter
+                    Text = "Bu",
+                    Item = Mod.ButterSlice
                 },
                 new()
                 {
@@ -78,6 +83,25 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override void OnRegister(ItemGroup gameDataObject)
         {
             Prefab.GetComponent<JacketPotatoWithButterItemGroupView>()?.Setup(Prefab);
+            GameObject bacon = Prefab.GetChild("Bacon");
+            foreach (var child in bacon.GetComponentsInChildren<Transform>())
+            {
+                child.gameObject.ApplyMaterial("Bacon");
+            }
+            Prefab.GetChild("Cheese/SubMesh_0.002").ApplyMaterial("Cheese - Default");
+            Prefab.GetChild("Butter").ApplyMaterial("Butter");
+            Prefab.GetChild("Butter/butter pool").ApplyMaterial("Butter");
+            Prefab.GetChild("JacketPotato/Potato/SubMesh_0").ApplyMaterial("Cooked Potato - Roast");
+            Prefab.GetChild("JacketPotato/Potato/SubMesh_1").ApplyMaterial("Cooked Potato");
+            Prefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001").ApplyMaterial("Cooked Potato - Roast");
+            Prefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001").ApplyMaterial("Cooked Potato");
+            Prefab.GetChild("Plate/Plate/Cylinder").ApplyMaterial("Plate", "Plate - Ring");
+            VisualEffectAsset asset = Resources.FindObjectsOfTypeAll<VisualEffectAsset>().Where(vfx => vfx.name == Mod.VFX_NAME).FirstOrDefault();
+            if (asset != default)
+            {
+                VisualEffect vfx = Prefab.GetChild("Steam").AddComponent<VisualEffect>();
+                vfx.visualEffectAsset = asset;
+            }
         }
     }
     public class JacketPotatoWithButterItemGroupView : ItemGroupView
@@ -102,7 +126,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 new()
                 {
                     GameObject = GameObjectUtils.GetChildObject(prefab, "Butter"),
-                    Item = Mod.Butter
+                    Item = Mod.ButterSlice
                 },
                 new()
                 {

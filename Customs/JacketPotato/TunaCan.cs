@@ -3,6 +3,7 @@ using KitchenJacketPotato;
 using UnityEngine;
 using KitchenData;
 using System.Collections.Generic;
+using KitchenLib.Utils;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
@@ -23,8 +24,14 @@ namespace JacketPotatoMod.Customs.JacketPotato
             },
 
         };
+        // Bean - Cooked, Bean - Juice Cooked, Bacon, Cooked Potato - Roast, Cooked Potato, Cheese - Default, Mayonnaise, Metal Dark
         public override void OnRegister(Item gameDataObject)
         {
+            Prefab.GetChild("Tin/Cylinder.002").ApplyMaterial("Metal Dark");
+            Prefab.GetChild("Tin/TinLAbel").ApplyMaterial("Blueberry 2");
+            Prefab.GetChild("Tin").ApplyMaterial("Metal Dark");
+
+
         }
     }
 }

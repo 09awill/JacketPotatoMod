@@ -4,6 +4,7 @@ using KitchenJacketPotato;
 using UnityEngine;
 using static KitchenData.ItemGroup;
 using System.Collections.Generic;
+using KitchenLib.Utils;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
@@ -30,6 +31,10 @@ namespace JacketPotatoMod.Customs.JacketPotato
         };
         public override void OnRegister(ItemGroup gameDataObject)
         {
+            Prefab.GetChild("Cube/Beans").ApplyMaterial("Tuna");
+            Prefab.GetChild("Cylinder.001/BeansLiquid").ApplyMaterial("Tuna");
+            Prefab.GetChild("Cylinder").ApplyMaterial("Metal Dark");
+
         }
     }
 }

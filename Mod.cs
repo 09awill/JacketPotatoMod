@@ -44,6 +44,8 @@ namespace KitchenJacketPotato
 
         public static AssetBundle Bundle;
 
+        public const string VFX_NAME = "Steam";
+
         // Vanilla Processes
         internal static Process Cook => GetExistingGDO<Process>(ProcessReferences.Cook);
         internal static Process Chop => GetExistingGDO<Process>(ProcessReferences.Chop);
@@ -55,7 +57,9 @@ namespace KitchenJacketPotato
         internal static Item JacketPotato => GetExistingGDO<Item>(ItemReferences.RoastPotatoItem);
 
         internal static Item Burnt => GetExistingGDO<Item>(ItemReferences.BurnedFood);
-        internal static Item Beans => GetExistingGDO<Item>(ItemReferences.BeansCooked);
+        internal static Item RawBeans => GetExistingGDO<Item>(ItemReferences.BeansIngredient);
+
+        internal static Item Beans => GetExistingGDO<Item>(ItemReferences.BeansServing);
         internal static Item ChoppedCheese => GetExistingGDO<Item>(ItemReferences.CheeseGrated);
         internal static Item Cheese => GetExistingGDO<Item>(ItemReferences.Cheese);
 
@@ -69,9 +73,14 @@ namespace KitchenJacketPotato
 
         internal static Item Plate => Find<Item>(ItemReferences.Plate);
         internal static Item DirtyPlate => Find<Item>(ItemReferences.PlateDirty);
+        internal static Item Egg => Find<Item>(ItemReferences.Egg);
+        internal static Item Oil => Find<Item>(ItemReferences.Oil);
+
 
         // Modded Items
         internal static Item Butter => Find<Item>(IngredientLib.References.GetIngredient("Butter"));
+        internal static Item ButterSlice => Find<Item>(IngredientLib.References.GetSplitIngredient("Butter"));
+
         internal static Item Bacon => Find<Item>(IngredientLib.References.GetIngredient("Bacon"));
         internal static ItemGroup JacketPotatoWithBeans => GetModdedGDO<ItemGroup, JacketPotatoWithBeans>();
         internal static ItemGroup JacketPotatoWithButter => GetModdedGDO<ItemGroup, JacketPotatoWithButter>();
@@ -122,22 +131,30 @@ namespace KitchenJacketPotato
             LogInfo("Attempting to register game data...");
             // Dishes and Cards
             
-            AddGameDataObject<BurritoDish>();
+            AddGameDataObject<JacketPotatoBaconToppingCard>();
+            AddGameDataObject<JacketPotatoCheeseToppingCard>();
+            AddGameDataObject<JacketPotatoWithBeansDish>();
+            AddGameDataObject<JacketPotatoWithButterDish>();
+            AddGameDataObject<JacketPotatoWithTunaMayoDish>();
+
 
 
             // Items
+            AddGameDataObject<JacketPotatoWithBeans>();
+            AddGameDataObject<JacketPotatoWithButter>();
+            AddGameDataObject<JacketPotatoWithTunaMayo>();
+            AddGameDataObject<TunaCan>();
+            AddGameDataObject<TunaCanOpened>();
+            AddGameDataObject<TunaMayo>();
 
-            AddGameDataObject<BurritoBasket>();
-            AddGameDataObject<Foil>();
 
-            AddGameDataObject<ChoppedChicken>();
-            AddGameDataObject<ChoppedChickenCooked>();
-            AddGameDataObject<ChoppedPorkWokCooked>();
+
+
 
 
             //Providers
-            AddGameDataObject<BurritoBasketProvider>();
-            AddGameDataObject<FoilProvider>();
+            AddGameDataObject<TunaCanProvider>();
+
 
             //Processes
             LogInfo("Done loading game data.");

@@ -49,38 +49,41 @@ namespace JacketPotatoMod.Customs.Cards
         public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
         {
             { Locale.English, "Cook bacon and add to Jacket Potato!" },
-            { Locale.French, "Hacher la viande et faire sauter avec du riz, mélanger avec une tortilla, interagir pour envelopper et ensuite envelopper dans du papier d'aluminium. Servir dans un panier !" },
-            { Locale.German, "Fleisch hacken und mit Reis anbraten, mit Tortilla kombinieren, interagieren, umwickeln und dann in Folie einwickeln. In einem Korb servieren!" },
-            { Locale.Spanish,  "Picar la carne y saltear con arroz, combinar con tortilla, interactuar para envolver y luego envolver en papel de aluminio. ¡Servir en una canasta!" },
-            { Locale.Polish, "Posiekaj mięso i smaż z ryżem, połącz z tortillą, zetnij do zapakowania, a następnie zawijaj w folię. Podawaj w koszu!" },
-            { Locale.Russian, "Измельчить мясо и обжарить с рисом, сочетать с тортильей, взаимодействовать, чтобы завернуть, а затем завернуть в фольгу. Подать в корзине!" },
-            { Locale.PortugueseBrazil, "Picar a carne e refogar com arroz, combinar com a tortilla, interagir para enrolar e depois embrulhar em papel alumínio. Servir em uma cesta!" },
-            { Locale.Japanese, "肉を刻んで炒め、ご飯と混ぜ、トルティーヤと組み合わせて包み、アルミホイルで包む。バスケットで提供！" },
-            { Locale.ChineseSimplified, "切肉炒饭，与玉米饼混合，交互包裹，然后用锡纸包裹。装在篮子里上桌！" },
-            { Locale.ChineseTraditional, "切肉炒飯，與墨西哥薄餅混合，交互包裹，然後用錫箔包裹。裝在籃子裡上桌！" },
-            { Locale.Korean, "고기를 다져 밥과 볶아 토르티야와 함께 섞고 포장하고 호일에 싸서 제공하세요!" },
-            { Locale.Turkish,  "Etleri doğrayıp pilavla kavurun, tortilla ile karıştırın, sararak birleştirin ve ardından folyoya sarın. Bir sepet içinde servis yapın!" },
+            { Locale.French, "Cuisinez du bacon et ajoutez-le à la pomme de terre en robe des champs !" },
+            { Locale.German, "Braten Sie Speck und fügen Sie ihn zur Pellkartoffel hinzu!" },
+            { Locale.Spanish, "Cocine el bacon y añádalo a la patata asada." },
+            { Locale.Polish, "Smaż boczek i dodaj go do ziemniaków w mundurkach!" },
+            { Locale.Russian, "Приготовьте бекон и добавьте его к картофелю в мундире!" },
+            { Locale.PortugueseBrazil, "Cozinhe o bacon e adicione à batata assada!" },
+            { Locale.Japanese, "ベーコンを調理してジャケットポテトに追加してください！" },
+            { Locale.ChineseSimplified, "煮培根，然后加入到烤土豆中！" },
+            { Locale.ChineseTraditional, "煮培根，然后加入到烤土豆中！" },
+            { Locale.Korean, "베이컨을 조리하고 구운 감자에 추가하세요!" },
+            { Locale.Turkish, "Pastırmayı pişirin ve Fırın Patates'e ekleyin!" },
 
         };
 
         public override List<(Locale, UnlockInfo)> InfoList => new()
         {
             ( Locale.English, LocalisationUtils.CreateUnlockInfo("Jacket Potato Bacon Topping", "Adds Bacon as a topping for jacket potato", "Delicious bacon") ),
-            ( Locale.French, LocalisationUtils.CreateUnlockInfo("Burrito de boeuf", "Ajoute le burrito de boeuf comme plat de base", "Cela signifie petit âne.") ),
-            ( Locale.German, LocalisationUtils.CreateUnlockInfo("Rindfleisch-Burrito","Fügt den Rindfleisch-Burrito als Grundgericht hinzu", "Das bedeutet kleiner Esel.") ),
-            ( Locale.Spanish, LocalisationUtils.CreateUnlockInfo("Burrito de carne de res", "Agrega el burrito de carne de res como plato base", "Significa pequeño burro.") ),
-            ( Locale.Polish, LocalisationUtils.CreateUnlockInfo("Burrito z wołowiną", "Dodaj burrito z wołowiną jako danie podstawowe", "To znaczy mała osiołek.") ),
-            ( Locale.Russian, LocalisationUtils.CreateUnlockInfo("Буррито с говядиной", "Добавьте буррито с говядиной в качестве основного блюда", "Это означает маленького осла.") ),
-            ( Locale.PortugueseBrazil, LocalisationUtils.CreateUnlockInfo("Burrito de carne", "Adiciona o burrito de carne como prato base", "Significa burrinho.") ),
-            ( Locale.Japanese, LocalisationUtils.CreateUnlockInfo("ビーフブリト", "ビーフブリトをベースの料理として追加", "それは小さなロバを意味します。") ),
-            ( Locale.ChineseSimplified, LocalisationUtils.CreateUnlockInfo("牛肉卷饼", "将牛肉卷饼添加为基础菜品", "它的意思是小驴。") ),
-            ( Locale.ChineseTraditional, LocalisationUtils.CreateUnlockInfo("牛肉捲餅", "將牛肉捲餅添加為基礎菜品", "它的意思是小驢。") ),
-            ( Locale.Korean, LocalisationUtils.CreateUnlockInfo("소고기 부리또", "소고기 부리또를 기본 요리로 추가합니다", "이는 작은 당나귀를 의미합니다.") ),
-            ( Locale.Turkish, LocalisationUtils.CreateUnlockInfo("Etli Burrito", "Etli Burrito'yu temel bir yemek olarak ekler", "Bu küçük eşek anlamına gelir.") ),
-        };
+            ( Locale.French, LocalisationUtils.CreateUnlockInfo("Garniture de Pomme de Terre au Bacon", "Ajoute du bacon comme garniture pour la pomme de terre en robe des champs", "Délicieux bacon") ),
+            ( Locale.German, LocalisationUtils.CreateUnlockInfo("Jacketkartoffel mit Specktopping", "Fügt Speck als Topping für die Jackenkartoffel hinzu", "Köstlicher Speck") ),
+            ( Locale.Spanish, LocalisationUtils.CreateUnlockInfo("Topping de Tocino para Patata en Chaqueta", "Agrega tocino como topping para la patata en chaqueta", "Delicioso tocino") ),
+            ( Locale.Polish, LocalisationUtils.CreateUnlockInfo("Boczek na Ziemniaku w Pelerynie", "Dodaje boczek jako dodatek do ziemniaka w mundurku", "Pyszny boczek") ),
+            ( Locale.Russian, LocalisationUtils.CreateUnlockInfo("Топпинг картофель с беконом", "Добавьте бекон как топпинг для картофеля в мундире", "Вкусный бекон") ),
+            ( Locale.PortugueseBrazil, LocalisationUtils.CreateUnlockInfo("Cobertura de Bacon para Batata Assada", "Adiciona bacon como cobertura para a batata assada", "Bacon delicioso") ),
+            ( Locale.Japanese, LocalisationUtils.CreateUnlockInfo("ジャケットポテトベーコントッピング", "ジャケットポテト用のベーコンを追加", "美味しいベーコン") ),
+            ( Locale.ChineseSimplified, LocalisationUtils.CreateUnlockInfo("夹克土豆培根餐盖", "将培根添加为夹克土豆的餐盖", "美味的培根") ),
+            ( Locale.ChineseTraditional, LocalisationUtils.CreateUnlockInfo("夾克馬鈴薯培根餐蓋", "將培根添加為夾克馬鈴薯的餐蓋", "美味的培根") ),
+            ( Locale.Korean, LocalisationUtils.CreateUnlockInfo("자켓 감자 베이컨 토핑", "자켓 감자 토핑으로 베이컨 추가", "맛있는 베이컨") ),
+            ( Locale.Turkish, LocalisationUtils.CreateUnlockInfo("Ceket Patates Bacon Kaplama", "Ceket patates için kaplama olarak bacon ekler", "Lezzetli bacon") ),
 
+        };
         public override void OnRegister(Dish gameDataObject)
         {
+            gameDataObject.Difficulty = Difficulty();
         }
+
+
     }
 }

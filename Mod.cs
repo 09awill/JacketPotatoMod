@@ -1,13 +1,8 @@
-﻿using BurritoMod.Customs;
-using BurritoMod.Customs.BaseBurrito;
-using BurritoMod.Customs.BeefBurrito;
-using BurritoMod.Customs.BeefBurritoWithSalad;
-using BurritoMod.Customs.BurritoSharedItems;
-using BurritoMod.Customs.BurritoWithSalad;
-using BurritoMod.Customs.Cards;
-using BurritoMod.Customs.Providers;
+﻿
 using IngredientLib.Ingredient.Items;
 using IngredientLib.Ingredient.Providers;
+using JacketPotatoMod.Customs.Cards;
+using JacketPotatoMod.Customs.JacketPotato;
 using Kitchen;
 using KitchenData;
 using KitchenLib;
@@ -53,13 +48,23 @@ namespace KitchenJacketPotato
         internal static Process Cook => GetExistingGDO<Process>(ProcessReferences.Cook);
         internal static Process Chop => GetExistingGDO<Process>(ProcessReferences.Chop);
         internal static Process Knead => GetExistingGDO<Process>(ProcessReferences.Knead);
+        internal static Process RequireOven => GetExistingGDO<Process>(ProcessReferences.RequireOven);
+
 
         // Vanilla Items
         internal static Item JacketPotato => GetExistingGDO<Item>(ItemReferences.RoastPotatoItem);
 
         internal static Item Burnt => GetExistingGDO<Item>(ItemReferences.BurnedFood);
         internal static Item Beans => GetExistingGDO<Item>(ItemReferences.BeansCooked);
-        internal static Item Cheese => GetExistingGDO<Item>(ItemReferences.CheeseGrated);
+        internal static Item ChoppedCheese => GetExistingGDO<Item>(ItemReferences.CheeseGrated);
+        internal static Item Cheese => GetExistingGDO<Item>(ItemReferences.Cheese);
+
+        internal static Item Mayo => GetExistingGDO<Item>(ItemReferences.Mayonnaise);
+        internal static Item Potato => GetExistingGDO<Item>(ItemReferences.Potato);
+        internal static Item Pot => GetExistingGDO<Item>(ItemReferences.Pot);
+
+
+
 
 
         internal static Item Plate => Find<Item>(ItemReferences.Plate);
@@ -68,17 +73,33 @@ namespace KitchenJacketPotato
         // Modded Items
         internal static Item Butter => Find<Item>(IngredientLib.References.GetIngredient("Butter"));
         internal static Item Bacon => Find<Item>(IngredientLib.References.GetIngredient("Bacon"));
+        internal static ItemGroup JacketPotatoWithBeans => GetModdedGDO<ItemGroup, JacketPotatoWithBeans>();
+        internal static ItemGroup JacketPotatoWithButter => GetModdedGDO<ItemGroup, JacketPotatoWithButter>();
+        internal static ItemGroup JacketPotatoWithTunaMayo => GetModdedGDO<ItemGroup, JacketPotatoWithTunaMayo>();
+        internal static Item TunaCanOpened => GetModdedGDO<Item, TunaCanOpened>();
+        internal static Item TunaCan => GetModdedGDO<Item, TunaCan>();
+        internal static Item TunaMayo => GetModdedGDO<Item, TunaMayo>();
+
+        internal static Appliance TunaCanProvider => GetModdedGDO<Appliance, TunaCanProvider>();
 
 
 
 
 
-        internal static Item Foil => GetModdedGDO<Item, Foil>();
+
+
+
+
+        //internal static Item Foil => GetModdedGDO<Item, Foil>();
 
 
 
         // Modded Dishes
-        internal static Dish BurritoDish => GetModdedGDO<Dish, BurritoDish>();
+        internal static Dish JacketPotatoWithBeansDish => GetModdedGDO<Dish, JacketPotatoWithBeansDish>();
+        internal static Dish JacketPotatoWithButterDish => GetModdedGDO<Dish, JacketPotatoWithButterDish>();
+        internal static Dish JacketPotatoWithTunaMayoDish => GetModdedGDO<Dish, JacketPotatoWithTunaMayoDish>();
+
+
 
         // Modded Appliances 
 

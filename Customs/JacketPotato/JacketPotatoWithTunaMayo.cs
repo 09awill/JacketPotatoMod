@@ -10,10 +10,10 @@ using BurritoMod.Customs.BaseBurrito;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
-    public class JacketPotatoWithTuna : CustomItemGroup<JacketPotatoWithTunaItemGroupView>
+    public class JacketPotatoWithTunaMayo : CustomItemGroup<JacketPotatoWithTunaItemGroupView>
     {
-        public override string UniqueNameID => "JacketPotatoWithTuna";
-        public override GameObject Prefab => Mod.Bundle.LoadAsset<GameObject>("JacketPotatoWithTuna");
+        public override string UniqueNameID => "Jacket Potato With Tuna Mayo";
+        public override GameObject Prefab => Mod.Bundle.LoadAsset<GameObject>("JacketPotatoWithTunaMayo");
         public override ItemCategory ItemCategory => ItemCategory.Generic;
         public override ItemValue ItemValue => ItemValue.Medium;
 
@@ -36,17 +36,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 Min = 1,
                 Items = new List<Item>()
                 {
-                    Mod.Butter,
-                }
-            },
-            new ItemSet()
-            {
-                Max = 2,
-                Min = 1,
-                Items = new List<Item>()
-                {
-                    Mod.Cheese,
-                    Mod.Bacon
+                    Mod.TunaMayo,
                 }
             }
         };
@@ -59,18 +49,8 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 },
                 new()
                 {
-                    Text = "T",
-                    Item = Mod.Butter
-                },
-                new()
-                {
-                    Text = "C",
-                    Item = Mod.Cheese
-                },
-                new()
-                {
-                    Text = "Bac",
-                    Item = Mod.Bacon
+                    Text = "TM",
+                    Item = Mod.TunaMayo
                 }
         };
 
@@ -90,24 +70,19 @@ namespace JacketPotatoMod.Customs.JacketPotato
             {
                 new()
                 {
+                    GameObject = GameObjectUtils.GetChildObject(prefab, "Plate"),
+                    Item = Mod.Plate
+                },
+                new()
+                {
                     GameObject = GameObjectUtils.GetChildObject(prefab, "JacketPotato"),
                     Item = Mod.JacketPotato
                 },
                 new()
                 {
-                    GameObject = GameObjectUtils.GetChildObject(prefab, "Tuna"),
-                    Item = Mod.Butter
+                    GameObject = GameObjectUtils.GetChildObject(prefab, "TunaMayo"),
+                    Item = Mod.TunaMayo
                 },
-                new()
-                {
-                    GameObject = GameObjectUtils.GetChildObject(prefab, "Cheese"),
-                    Item = Mod.Cheese
-                },
-                new()
-                {
-                    GameObject = GameObjectUtils.GetChildObject(prefab, "Bacon"),
-                    Item = Mod.Bacon
-                }
             };
         }
     }

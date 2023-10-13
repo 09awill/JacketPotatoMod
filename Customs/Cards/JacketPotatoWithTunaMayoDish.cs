@@ -1,76 +1,52 @@
-﻿using KitchenBurritoMod;
+﻿using KitchenJacketPotato;
 using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BurritoMod.Customs.Cards
+namespace JacketPotatoMod.Customs.Cards
 {
-    class BeefBurritoDish : CustomDish
+    class JacketPotatoWithTunaMayoDish : CustomDish
     {
-        public override string UniqueNameID => "Beef Burrito Dish";
-        public override DishType Type => DishType.Base;
-        public override GameObject DisplayPrefab => Mod.Bundle.LoadAsset<GameObject>("BeefBurritoInBasketIcon");
-        public override GameObject IconPrefab => DisplayPrefab;
+        public override string UniqueNameID => "Jacket Potato with Tuna Mayo Dish";
+        public override DishType Type => DishType.Main;
         public override DishCustomerChange CustomerMultiplier => DishCustomerChange.SmallDecrease;
         public override CardType CardType => CardType.Default;
-        public override Unlock.RewardLevel ExpReward => Unlock.RewardLevel.Large;
+        public override Unlock.RewardLevel ExpReward => Unlock.RewardLevel.Medium;
         public override UnlockGroup UnlockGroup => UnlockGroup.Dish;
-        public override bool IsSpecificFranchiseTier => false;
-        public override bool IsAvailableAsLobbyOption => true;
-        public override bool DestroyAfterModUninstall => false;
-        public override bool IsUnlockable => true;
-        public override bool RequiredNoDishItem => true;
 
         public int Difficulty()
         {
-            return 3;
+            return 1;
         }
-        public override List<Unlock> HardcodedBlockers => new()
-        {
-            Mod.BeefBurritoMainCard
-        };
-        public override List<string> StartingNameSet => new List<string>
-        {
-            "Hurricane Tortilla",
-            "It's a wrap!",
-            "Beef-o-Bell",
-            "Un-Burrito-Ble!",
-            "Neato Burrito",
-            "Boo-Rito",
-            "Gangster Wrap",
-            "Epic Wrap Battle",
-            "Danny Burrito",
-            "Let's get Beefed!"
-        };
+
         public override List<Dish.MenuItem> ResultingMenuItems => new List<Dish.MenuItem>
         {
             new Dish.MenuItem
             {
-                Item = Mod.BeefBurritoInaBasket,
+                Item = Mod.JacketPotatoWithTunaMayo,
                 Phase = MenuPhase.Main,
                 Weight = 1
             }
         };
         public override HashSet<Item> MinimumIngredients => new HashSet<Item>
         {
-            Mod.Wok,
-            Mod.FlourTortilla,
-            Mod.Rice,
-            Mod.Meat,
-            Mod.Foil,
-            Mod.BurritoBasket
+            Mod.TunaCan,
+            Mod.Potato,
+            Mod.Plate,
+            Mod.Pot,
+
         };
         public override HashSet<Process> RequiredProcesses => new HashSet<Process>
         {
             Mod.Cook,
             Mod.Chop,
-            Mod.Knead,
+            Mod.RequireOven
         };
         public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
         {
-            { Locale.English, "Chop Meat and stir fry with rice, combine with tortilla, Interact to wrap and then wrap in foil. Serve in a basket!" },
+            { Locale.English, "Bake potato in oven, mix egg and combine with oil to make mayo, combine with tuna then with Jacket potato and serve!" },
             { Locale.French, "Hacher la viande et faire sauter avec du riz, mélanger avec une tortilla, interagir pour envelopper et ensuite envelopper dans du papier d'aluminium. Servir dans un panier !" },
             { Locale.German, "Fleisch hacken und mit Reis anbraten, mit Tortilla kombinieren, interagieren, umwickeln und dann in Folie einwickeln. In einem Korb servieren!" },
             { Locale.Spanish,  "Picar la carne y saltear con arroz, combinar con tortilla, interactuar para envolver y luego envolver en papel de aluminio. ¡Servir en una canasta!" },
@@ -87,7 +63,7 @@ namespace BurritoMod.Customs.Cards
 
         public override List<(Locale, UnlockInfo)> InfoList => new()
         {
-            ( Locale.English, LocalisationUtils.CreateUnlockInfo("Beef Burrito", "Adds Beef Burrito as a Base Dish", "It means little donkey.") ),
+            ( Locale.English, LocalisationUtils.CreateUnlockInfo("Jacket Potato with Tuna Mayo", "Adds Tuna Mayo as a filling for jacket potato", "One for the pescatarians") ),
             ( Locale.French, LocalisationUtils.CreateUnlockInfo("Burrito de boeuf", "Ajoute le burrito de boeuf comme plat de base", "Cela signifie petit âne.") ),
             ( Locale.German, LocalisationUtils.CreateUnlockInfo("Rindfleisch-Burrito","Fügt den Rindfleisch-Burrito als Grundgericht hinzu", "Das bedeutet kleiner Esel.") ),
             ( Locale.Spanish, LocalisationUtils.CreateUnlockInfo("Burrito de carne de res", "Agrega el burrito de carne de res como plato base", "Significa pequeño burro.") ),
@@ -103,19 +79,6 @@ namespace BurritoMod.Customs.Cards
 
         public override void OnRegister(Dish gameDataObject)
         {
-            //TO DO: Change to chicken
-            GameObject FoilWrappedBurrito = DisplayPrefab.GetChild("FoilWrappedBurrito");
-            Material[] mats = new Material[] { MaterialUtils.GetExistingMaterial("Metal- Shiny") };
-            FoilWrappedBurrito.ApplyMaterial(mats);
-            FoilWrappedBurrito.GetChild("FoilEnds").ApplyMaterial(mats);
-
-            mats = new Material[] { MaterialUtils.GetExistingMaterial("Well-done") };
-            FoilWrappedBurrito.GetChild("StickerBeef").ApplyMaterial(mats);
-
-            mats = new Material[] { MaterialUtils.GetExistingMaterial("Tomato") };
-            DisplayPrefab.GetChild("BurritoBasket").ApplyMaterial(mats);
-            mats = new Material[] { MaterialUtils.GetExistingMaterial("Cooked Pastry") };
-            DisplayPrefab.GetChild("BurritoBasket").GetChild("Paper").ApplyMaterial(mats);
         }
     }
 }

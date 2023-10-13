@@ -12,7 +12,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
 {
     public class JacketPotatoWithBeans : CustomItemGroup<JacketPotatoWithBeansItemGroupView>
     {
-        public override string UniqueNameID => "JacketPotatoWithBeans";
+        public override string UniqueNameID => "Jacket Potato With Beans";
         public override GameObject Prefab => Mod.Bundle.LoadAsset<GameObject>("JacketPotatoWithBeans");
         public override ItemCategory ItemCategory => ItemCategory.Generic;
         public override ItemValue ItemValue => ItemValue.Medium;
@@ -45,7 +45,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 Min = 1,
                 Items = new List<Item>()
                 {
-                    Mod.Cheese,
+                    Mod.ChoppedCheese,
                     Mod.Bacon
                 }
             }
@@ -65,7 +65,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 new()
                 {
                     Text = "C",
-                    Item = Mod.Cheese
+                    Item = Mod.ChoppedCheese
                 },
                 new()
                 {
@@ -87,7 +87,12 @@ namespace JacketPotatoMod.Customs.JacketPotato
             // All of these sub-objects are hidden unless the item is present
 
             ComponentGroups = new()
-            {
+            {               
+                new()
+                {
+                    GameObject = GameObjectUtils.GetChildObject(prefab, "Plate"),
+                    Item = Mod.Plate
+                },
                 new()
                 {
                     GameObject = GameObjectUtils.GetChildObject(prefab, "JacketPotato"),
@@ -101,7 +106,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 new()
                 {
                     GameObject = GameObjectUtils.GetChildObject(prefab, "Cheese"),
-                    Item = Mod.Cheese
+                    Item = Mod.ChoppedCheese
                 },
                 new()
                 {

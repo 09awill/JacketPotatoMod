@@ -6,7 +6,6 @@ using KitchenLib.Utils;
 using KitchenData;
 using static KitchenData.ItemGroup;
 using System.Collections.Generic;
-using BurritoMod.Customs.BaseBurrito;
 using System.Linq;
 using UnityEngine.VFX;
 

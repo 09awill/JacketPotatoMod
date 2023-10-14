@@ -39,7 +39,8 @@ namespace JacketPotatoMod.Customs.Cards
             "Bean There, Done That",
             "Tater Tots & Cracked Pots",
             "Baked to the Future",
-            "Butter Believe It"
+            "Butter Believe It",
+            "Elspudsie"
         };
         public override List<Dish.MenuItem> ResultingMenuItems => new List<Dish.MenuItem>
         {
@@ -111,6 +112,9 @@ namespace JacketPotatoMod.Customs.Cards
             Mod.LogWarning("Cheese");
 
             IconPrefab.GetChild("Beans/Cube/Beans").ApplyMaterial("Bean - Cooked");
+            IconPrefab.GetChild("Beans/Beans (1)").ApplyMaterial("Bean - Cooked");
+            IconPrefab.GetChild("Beans/Beans (2)").ApplyMaterial("Bean - Cooked");
+            IconPrefab.GetChild("Beans/BeansLiquid").ApplyMaterial("Bean - Juice Cooked");
             IconPrefab.GetChild("Beans/Cylinder.001/BeansLiquid").ApplyMaterial("Bean - Juice Cooked");
             Mod.LogWarning("Beans");
 

@@ -1,5 +1,4 @@
 ﻿
-using IngredientLib.Ingredient.Items;
 using IngredientLib.Ingredient.Providers;
 using JacketPotatoMod.Customs.Cards;
 using JacketPotatoMod.Customs.JacketPotato;

@@ -6,7 +6,6 @@ using KitchenLib.Utils;
 using KitchenData;
 using static KitchenData.ItemGroup;
 using System.Collections.Generic;
-using BurritoMod.Customs.BaseBurrito;
 using System.Linq;
 using UnityEngine.VFX;
 
@@ -92,7 +91,9 @@ namespace JacketPotatoMod.Customs.JacketPotato
             Mod.LogWarning("Cheese");
 
             Prefab.GetChild("Beans/Cube/Beans").ApplyMaterial("Bean - Cooked");
-
+            Prefab.GetChild("Beans/Beans (1)").ApplyMaterial("Bean - Cooked");
+            Prefab.GetChild("Beans/Beans (2)").ApplyMaterial("Bean - Cooked");
+            Prefab.GetChild("Beans/BeansLiquid").ApplyMaterial("Bean - Juice Cooked");
             Prefab.GetChild("Beans/Cylinder.001/BeansLiquid").ApplyMaterial("Bean - Juice Cooked");
             Mod.LogWarning("Beans");
             Prefab.GetChild("JacketPotato/Potato/SubMesh_0").ApplyMaterial("Cooked Potato - Roast");

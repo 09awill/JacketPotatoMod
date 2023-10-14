@@ -95,8 +95,9 @@ namespace JacketPotatoMod.Customs.Cards
                 child.gameObject.ApplyMaterial("Bacon");
             }
             IconPrefab.GetChild("Cheese/SubMesh_0.002").ApplyMaterial("Cheese - Default");
-            IconPrefab.GetChild("butter").ApplyMaterial("Butter");
-            IconPrefab.GetChild("butter/butter pool").ApplyMaterial("Butter");
+            IconPrefab.GetChild("Butter").ApplyMaterial("Butter");
+            IconPrefab.GetChild("Butter/butter pool").ApplyMaterial("Butter");
+            IconPrefab.GetChild("Butter/butter pool (1)").ApplyMaterial("Butter");
             IconPrefab.GetChild("JacketPotato/Potato/SubMesh_0").ApplyMaterial("Cooked Potato - Roast");
             IconPrefab.GetChild("JacketPotato/Potato/SubMesh_1").ApplyMaterial("Cooked Potato");
             IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001").ApplyMaterial("Cooked Potato - Roast");

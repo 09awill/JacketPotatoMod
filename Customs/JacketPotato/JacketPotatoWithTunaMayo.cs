@@ -19,6 +19,8 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override ItemValue ItemValue => ItemValue.Medium;
         public override Item DisposesTo => Mod.Plate;
         public override Item DirtiesTo => Mod.DirtyPlate;
+        public override bool CanContainSide => true;
+
         public override List<ItemSet> Sets => new List<ItemSet>()
         {
             new ItemSet()

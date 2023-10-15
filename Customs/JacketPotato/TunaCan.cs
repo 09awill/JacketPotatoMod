@@ -14,6 +14,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override ItemCategory ItemCategory => ItemCategory.Generic;
         public override ItemStorage ItemStorageFlags => ItemStorage.StackableFood;
         public override string ColourBlindTag => "T";
+        public override Appliance DedicatedProvider => Mod.TunaCanProvider;
         public override List<Item.ItemProcess> Processes => new List<Item.ItemProcess>
         {
             new Item.ItemProcess

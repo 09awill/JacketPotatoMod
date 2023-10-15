@@ -5,6 +5,8 @@ using UnityEngine;
 using static KitchenData.ItemGroup;
 using System.Collections.Generic;
 using KitchenLib.Utils;
+using Kitchen;
+using static Kitchen.ItemGroupView;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
@@ -15,6 +17,10 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override ItemCategory ItemCategory => ItemCategory.Generic;
         public override ItemStorage ItemStorageFlags => ItemStorage.StackableFood;
         public override string ColourBlindTag => "TM";
+        public override List<ItemGroupView.ColourBlindLabel> Labels => new List<ItemGroupView.ColourBlindLabel>()
+        {
+            new ColourBlindLabel() { Item = Mod.TunaCanOpened, Text = "TM" }
+        };
         public override List<ItemSet> Sets => new List<ItemSet>()
         {
             new ItemSet()

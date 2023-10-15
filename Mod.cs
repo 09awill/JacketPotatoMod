@@ -81,7 +81,6 @@ namespace KitchenJacketPotato
         internal static Item ButterSlice => Find<Item>(IngredientLib.References.GetSplitIngredient("Butter"));
 
         internal static Item Bacon => Find<Item>(IngredientLib.References.GetIngredient("Bacon"));
-        internal static ItemGroup JacketPotatoBaseDish => GetModdedGDO<ItemGroup, JacketPotatoBaseDish>();
 
         internal static ItemGroup JacketPotatoWithBeans => GetModdedGDO<ItemGroup, JacketPotatoWithBeans>();
         internal static ItemGroup JacketPotatoWithButter => GetModdedGDO<ItemGroup, JacketPotatoWithButter>();
@@ -141,7 +140,7 @@ namespace KitchenJacketPotato
 
 
             // Items
-            AddGameDataObject<JacketPotatoBaseDish>();
+            //AddGameDataObject<JacketPotatoBaseDish>();
             AddGameDataObject<JacketPotatoWithBeans>();
             AddGameDataObject<JacketPotatoWithButter>();
             AddGameDataObject<JacketPotatoWithTunaMayo>();

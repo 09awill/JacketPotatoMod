@@ -31,7 +31,17 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 IsMandatory = true,
                 Items = new List<Item>()
                 {
-                    Mod.JacketPotatoBaseDish,
+                    Mod.JacketPotato,
+                    Mod.Plate
+                }
+            },
+            new ItemSet()
+            {
+                Max = 1,
+                Min = 1,
+                IsMandatory = false,
+                Items = new List<Item>()
+                {
                     Mod.TunaMayo
                 }
             },
@@ -41,7 +51,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 new()
                 {
                     Text = "P",
-                    Item = Mod.JacketPotatoBaseDish
+                    Item = Mod.Plate
                 },
                 new()
                 {
@@ -76,13 +86,12 @@ namespace JacketPotatoMod.Customs.JacketPotato
         {
             // This tells which sub-object of the prefab corresponds to each component of the ItemGroup
             // All of these sub-objects are hidden unless the item is present
-
             ComponentGroups = new()
             {
                 new()
                 {
-                    GameObject = GameObjectUtils.GetChildObject(prefab, "JacketPotato"),
-                    Item = Mod.JacketPotatoBaseDish
+                    GameObject = GameObjectUtils.GetChildObject(prefab, "PotatoToTrickChef"),
+                    Item = Mod.JacketPotato
                 },
                 new()
                 {
@@ -90,6 +99,17 @@ namespace JacketPotatoMod.Customs.JacketPotato
                     Item = Mod.TunaMayo
                 },
             };
+        }
+        public override void PerformUpdate(int item_id, ItemList components)
+        {
+            base.PerformUpdate(item_id, components);
+            int potCount = 0;
+            foreach (int item in components)
+            {
+                if (item == ItemReferences.RoastPotatoItem) potCount++;
+            }
+            GameObject roastPot = gameObject.GetChild("Side Container/Side Prefab(Clone)/Roast Potato");
+            if (roastPot != null) roastPot.GetChild(0).SetActive(potCount > 1);
         }
     }
 }

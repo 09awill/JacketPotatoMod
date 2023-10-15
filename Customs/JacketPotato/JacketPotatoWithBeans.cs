@@ -11,6 +11,8 @@ using UnityEngine.VFX;
 using KitchenLib.References;
 using System.Text;
 using IngredientLib.Ingredient.Items;
+using JacketPotatoMod.Customs.HelperScripts;
+using Unity.Entities;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
@@ -33,8 +35,17 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 IsMandatory = true,
                 Items = new List<Item>()
                 {
-                    Mod.JacketPotatoBaseDish,
-                    Mod.Beans
+                    Mod.Plate,
+                    Mod.JacketPotato,
+                }
+            },
+            new ItemSet()
+            {
+                Max = 1,
+                Min = 1,
+                Items = new List<Item>()
+                {
+                    Mod.Beans,
                 }
             },
             new ItemSet()
@@ -54,7 +65,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 new()
                 {
                     Text = "P",
-                    Item = Mod.JacketPotatoBaseDish
+                    Item = Mod.Plate
                 },
                 new()
                 {
@@ -76,6 +87,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override void OnRegister(ItemGroup gameDataObject)
         {
             Prefab.GetComponent<JacketPotatoWithBeansItemGroupView>()?.Setup(Prefab);
+            //Prefab.GetChild("Side Container").AddComponent<DoubleSideFixer>();
             GameObject bacon = Prefab.GetChild("Bacon");
             foreach (var child in bacon.GetComponentsInChildren<Transform>())
             {
@@ -111,18 +123,14 @@ namespace JacketPotatoMod.Customs.JacketPotato
     }
     public class JacketPotatoWithBeansItemGroupView : ItemGroupView
     {
+        private GameObject jacketPotato = null;
         internal void Setup(GameObject prefab)
         {
             // This tells which sub-object of the prefab corresponds to each component of the ItemGroup
             // All of these sub-objects are hidden unless the item is present
-
+            jacketPotato = prefab.GetChild("JacketPotato");
             ComponentGroups = new()
-            {               
-                new()
-                {
-                    GameObject = GameObjectUtils.GetChildObject(prefab, "JacketPotato"),
-                    Item = Mod.JacketPotatoBaseDish
-                },
+            {
                 new()
                 {
                     GameObject = GameObjectUtils.GetChildObject(prefab, "Beans"),
@@ -140,7 +148,17 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 }
             };
         }
-
+        public override void PerformUpdate(int item_id, ItemList components)
+        {
+            base.PerformUpdate(item_id, components);
+            int potCount = 0;
+            foreach (int item in components)
+            {
+                if (item == ItemReferences.RoastPotatoItem) potCount++;
+            }
+            GameObject roastPot = gameObject.GetChild("Side Container/Side Prefab(Clone)/Roast Potato");
+            if (roastPot != null) roastPot.GetChild(0).SetActive(potCount > 1);
+        }
 
     }
 }

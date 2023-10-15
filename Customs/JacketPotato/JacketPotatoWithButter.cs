@@ -8,6 +8,7 @@ using static KitchenData.ItemGroup;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.VFX;
+using KitchenLib.References;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
@@ -30,17 +31,8 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 IsMandatory = true,
                 Items = new List<Item>()
                 {
-                    Mod.JacketPotato,
-                    Mod.Plate
-                }
-            },
-            new ItemSet()
-            {
-                Max = 1,
-                Min = 1,
-                Items = new List<Item>()
-                {
-                    Mod.ButterSlice,
+                    Mod.JacketPotatoBaseDish,
+                    Mod.ButterSlice
                 }
             },
             new ItemSet()
@@ -60,7 +52,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 new()
                 {
                     Text = "P",
-                    Item = Mod.JacketPotato
+                    Item = Mod.JacketPotatoBaseDish
                 },
                 new()
                 {
@@ -82,6 +74,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override void OnRegister(ItemGroup gameDataObject)
         {
             Prefab.GetComponent<JacketPotatoWithButterItemGroupView>()?.Setup(Prefab);
+
             GameObject bacon = Prefab.GetChild("Bacon");
             foreach (var child in bacon.GetComponentsInChildren<Transform>())
             {
@@ -114,14 +107,9 @@ namespace JacketPotatoMod.Customs.JacketPotato
             ComponentGroups = new()
             {
                 new()
-                            {
-                    GameObject = GameObjectUtils.GetChildObject(prefab, "Plate"),
-                    Item = Mod.Plate
-                },
-                new()
                 {
                     GameObject = GameObjectUtils.GetChildObject(prefab, "JacketPotato"),
-                    Item = Mod.JacketPotato
+                    Item = Mod.JacketPotatoBaseDish
                 },
                 new()
                 {
@@ -140,5 +128,6 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 }
             };
         }
+
     }
 }

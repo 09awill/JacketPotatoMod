@@ -48,19 +48,18 @@ namespace JacketPotatoMod.Customs.Cards
         };
         public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
         {
-            { Locale.English, "Cook bacon and add to Jacket Potato!" },
-            { Locale.French, "Cuisinez du bacon et ajoutez-le à la pomme de terre en robe des champs !" },
-            { Locale.German, "Braten Sie Speck und fügen Sie ihn zur Pellkartoffel hinzu!" },
-            { Locale.Spanish, "Cocine el bacon y añádalo a la patata asada." },
-            { Locale.Polish, "Smaż boczek i dodaj go do ziemniaków w mundurkach!" },
-            { Locale.Russian, "Приготовьте бекон и добавьте его к картофелю в мундире!" },
-            { Locale.PortugueseBrazil, "Cozinhe o bacon e adicione à batata assada!" },
-            { Locale.Japanese, "ベーコンを調理してジャケットポテトに追加してください！" },
-            { Locale.ChineseSimplified, "煮培根，然后加入到烤土豆中！" },
-            { Locale.ChineseTraditional, "煮培根，然后加入到烤土豆中！" },
-            { Locale.Korean, "베이컨을 조리하고 구운 감자에 추가하세요!" },
-            { Locale.Turkish, "Pastırmayı pişirin ve Fırın Patates'e ekleyin!" },
-
+            { Locale.English, "Chop pork then cook to get bacon, then combine with plated jacket potato with filling!" },
+            { Locale.French, "Coupez le porc, puis faites cuire pour obtenir du bacon, puis combinez avec une pomme de terre en robe avec garniture !" },
+            { Locale.German, "Schneiden Sie Schweinefleisch, um Speck zu erhalten, und kombinieren Sie es dann mit einer gefüllten Jackenkartoffel!" },
+            { Locale.Spanish, "Corte el cerdo, luego cocine para obtener tocino, luego combine con una chaqueta de patata rellena!" },
+            { Locale.Polish, "Pokrój wieprzowinę, aby uzyskać boczek, a następnie połącz z upieczonym ziemniakiem z nadzieniem!" },
+            { Locale.Russian, "Нарежьте свинину, затем обжарьте, чтобы получить бекон, затем соедините с картофельной курткой с начинкой!" },
+            { Locale.PortugueseBrazil, "Corte o porco, depois cozinhe para obter bacon e depois combine com uma batata assada com recheio!" },
+            { Locale.Japanese, "豚肉を切って、ベーコンを作り、ジャケットポテトと具材と組み合わせます！" },
+            { Locale.ChineseSimplified, "切猪肉，然后煮成培根，然后与带馅土豆一起搭配！" },
+            { Locale.ChineseTraditional, "切豬肉，然後煮成培根，然後與帶餡土豆一起搭配！" },
+            { Locale.Korean, "돼지고기를 썰어 베이컨을 만든 다음, 피망이 들어간 감자 자켓과 함께 섞어주세요!" },
+            { Locale.Turkish, "Domuz etini doğrayın, sonra pastırmayı elde etmek için pişirin, ardından doldurulmuş patates ceketiyle birleştirin!" }
         };
 
         public override List<(Locale, UnlockInfo)> InfoList => new()

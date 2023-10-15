@@ -40,7 +40,8 @@ namespace JacketPotatoMod.Customs.Cards
             "Tater Tots & Cracked Pots",
             "Baked to the Future",
             "Butter Believe It",
-            "Elspudsie"
+            "Elspudsie",
+            "Boil 'em, Mash 'em, Stick 'em in a stew!"
         };
         public override List<Dish.MenuItem> ResultingMenuItems => new List<Dish.MenuItem>
         {

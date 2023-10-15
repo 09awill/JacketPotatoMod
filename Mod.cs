@@ -27,7 +27,7 @@ namespace KitchenJacketPotato
         // Mod Version must follow semver notation e.g. "1.2.3"
         public const string MOD_GUID = "Madvion.PlateUp.JacketPotato";
         public const string MOD_NAME = "Jacket Potato";
-        public const string MOD_VERSION = "0.1.1";
+        public const string MOD_VERSION = "0.1.4";
         public const string MOD_AUTHOR = "Madvion";
         public const string MOD_GAMEVERSION = ">=1.1.3";
         // Game version this mod is designed for in semver
@@ -81,6 +81,8 @@ namespace KitchenJacketPotato
         internal static Item ButterSlice => Find<Item>(IngredientLib.References.GetSplitIngredient("Butter"));
 
         internal static Item Bacon => Find<Item>(IngredientLib.References.GetIngredient("Bacon"));
+        internal static ItemGroup JacketPotatoBaseDish => GetModdedGDO<ItemGroup, JacketPotatoBaseDish>();
+
         internal static ItemGroup JacketPotatoWithBeans => GetModdedGDO<ItemGroup, JacketPotatoWithBeans>();
         internal static ItemGroup JacketPotatoWithButter => GetModdedGDO<ItemGroup, JacketPotatoWithButter>();
         internal static ItemGroup JacketPotatoWithTunaMayo => GetModdedGDO<ItemGroup, JacketPotatoWithTunaMayo>();
@@ -139,6 +141,7 @@ namespace KitchenJacketPotato
 
 
             // Items
+            AddGameDataObject<JacketPotatoBaseDish>();
             AddGameDataObject<JacketPotatoWithBeans>();
             AddGameDataObject<JacketPotatoWithButter>();
             AddGameDataObject<JacketPotatoWithTunaMayo>();
@@ -188,7 +191,10 @@ namespace KitchenJacketPotato
             // Perform actions when game data is built
             Events.BuildGameDataEvent += delegate (object s, BuildGameDataEventArgs args)
             {
+                if (args.firstBuild)
+                {
 
+                }
             };
         }
 

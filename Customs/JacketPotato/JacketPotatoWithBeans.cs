@@ -8,6 +8,9 @@ using static KitchenData.ItemGroup;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.VFX;
+using KitchenLib.References;
+using System.Text;
+using IngredientLib.Ingredient.Items;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
@@ -30,17 +33,8 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 IsMandatory = true,
                 Items = new List<Item>()
                 {
-                    Mod.JacketPotato,
-                    Mod.Plate
-                }
-            },
-            new ItemSet()
-            {
-                Max = 1,
-                Min = 1,
-                Items = new List<Item>()
-                {
-                    Mod.Beans,
+                    Mod.JacketPotatoBaseDish,
+                    Mod.Beans
                 }
             },
             new ItemSet()
@@ -60,7 +54,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 new()
                 {
                     Text = "P",
-                    Item = Mod.JacketPotato
+                    Item = Mod.JacketPotatoBaseDish
                 },
                 new()
                 {
@@ -107,7 +101,6 @@ namespace JacketPotatoMod.Customs.JacketPotato
 
             Prefab.GetChild("Plate/Plate/Cylinder").ApplyMaterial("Plate", "Plate - Ring");
             Mod.LogWarning("Plate");
-
             VisualEffectAsset asset = Resources.FindObjectsOfTypeAll<VisualEffectAsset>().Where(vfx => vfx.name == Mod.VFX_NAME).FirstOrDefault();
             if (asset != default)
             {
@@ -127,13 +120,8 @@ namespace JacketPotatoMod.Customs.JacketPotato
             {               
                 new()
                 {
-                    GameObject = GameObjectUtils.GetChildObject(prefab, "Plate"),
-                    Item = Mod.Plate
-                },
-                new()
-                {
                     GameObject = GameObjectUtils.GetChildObject(prefab, "JacketPotato"),
-                    Item = Mod.JacketPotato
+                    Item = Mod.JacketPotatoBaseDish
                 },
                 new()
                 {
@@ -152,5 +140,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 }
             };
         }
+
+
     }
 }

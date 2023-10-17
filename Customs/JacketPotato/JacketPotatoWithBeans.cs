@@ -11,7 +11,6 @@ using UnityEngine.VFX;
 using KitchenLib.References;
 using System.Text;
 using IngredientLib.Ingredient.Items;
-using JacketPotatoMod.Customs.HelperScripts;
 using Unity.Entities;
 
 namespace JacketPotatoMod.Customs.JacketPotato
@@ -51,7 +50,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
             new ItemSet()
             {
                 Max = 2,
-                Min = 1,
+                Min = 0,
                 RequiresUnlock= true,
                 Items = new List<Item>()
                 {
@@ -69,11 +68,6 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 },
                 new()
                 {
-                    Text = "Be",
-                    Item = Mod.Beans
-                },
-                new()
-                {
                     Text = "C",
                     Item = Mod.ChoppedCheese
                 },
@@ -81,6 +75,11 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 {
                     Text = "Bac",
                     Item = Mod.Bacon
+                },
+                new()
+                {
+                    Text = "Be",
+                    Item = Mod.Beans
                 }
         };
 

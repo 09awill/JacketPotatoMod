@@ -48,7 +48,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
             new ItemSet()
             {
                 Max = 2,
-                Min = 1,
+                Min = 0,
                 RequiresUnlock= true,
                 Items = new List<Item>()
                 {

@@ -47,13 +47,22 @@ namespace JacketPotatoMod.Customs.JacketPotato
             },
             new ItemSet()
             {
-                Max = 2,
+                Max = 1,
+                Min = 0,
+                RequiresUnlock= true,
+                Items = new List<Item>()
+                {
+                    Mod.Bacon
+                }
+            },
+            new ItemSet()
+            {
+                Max = 1,
                 Min = 0,
                 RequiresUnlock= true,
                 Items = new List<Item>()
                 {
                     Mod.ChoppedCheese,
-                    Mod.Bacon
                 }
             }
         };

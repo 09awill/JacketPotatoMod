@@ -37,6 +37,10 @@ namespace JacketPotatoMod.Customs.Cards
                 Weight = 1
             }
         };
+        public override List<Unlock> HardcodedRequirements => new()
+        {
+            Mod.JacketPotatoWithBeansDish
+        };
         public override HashSet<Item> MinimumIngredients => new HashSet<Item>
         {
             Mod.Butter,

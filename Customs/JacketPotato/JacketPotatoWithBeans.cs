@@ -71,11 +71,6 @@ namespace JacketPotatoMod.Customs.JacketPotato
         {
                 new()
                 {
-                    Text = "P",
-                    Item = Mod.Plate
-                },
-                new()
-                {
                     Text = "C",
                     Item = Mod.ChoppedCheese
                 },

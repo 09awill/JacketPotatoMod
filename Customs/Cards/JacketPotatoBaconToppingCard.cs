@@ -3,7 +3,6 @@ using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Utils;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace JacketPotatoMod.Customs.Cards
 {
@@ -40,15 +39,10 @@ namespace JacketPotatoMod.Customs.Cards
             }
 
         ];
-        public override HashSet<Item> MinimumIngredients => new HashSet<Item>
-        {
-            Mod.Pork
-        };
-        public override HashSet<Process> RequiredProcesses => new HashSet<Process>
-        {
-            Mod.Cook,
-        };
-        public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
+        public override HashSet<Item> MinimumIngredients => [Mod.Pork];
+        public override HashSet<Process> RequiredProcesses => [Mod.Cook];
+        
+        public override Dictionary<Locale, string> Recipe => new()
         {
             { Locale.English, "Chop pork then cook to get bacon, then combine with plated jacket potato with filling!" },
             { Locale.French, "Coupez le porc, puis faites cuire pour obtenir du bacon, puis combinez avec une pomme de terre en robe avec garniture !" },
@@ -84,7 +78,5 @@ namespace JacketPotatoMod.Customs.Cards
         {
             gameDataObject.Difficulty = Difficulty();
         }
-
-
     }
 }

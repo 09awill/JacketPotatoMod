@@ -7,6 +7,7 @@ using KitchenData;
 using static KitchenData.ItemGroup;
 using System.Collections.Generic;
 using System.Linq;
+using JacketPotatoMod.Utils;
 using UnityEngine.VFX;
 using KitchenLib.References;
 
@@ -22,9 +23,9 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override Item DirtiesTo => Mod.DirtyPlate;
         public override bool CanContainSide => true;
 
-        public override List<ItemSet> Sets => new List<ItemSet>()
-        {
-            new ItemSet()
+        public override List<ItemSet> Sets =>
+        [
+            new()
             {
                 Max = 2,
                 Min = 2,
@@ -35,7 +36,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                     Mod.Plate
                 }
             },
-            new ItemSet()
+            new()
             {
                 Max = 1,
                 Min = 1,
@@ -45,45 +46,45 @@ namespace JacketPotatoMod.Customs.JacketPotato
                     Mod.ButterSlice,
                 }
             },
-            new ItemSet()
+            new()
             {
                 Max = 1,
                 Min = 0,
-                RequiresUnlock= true,
+                RequiresUnlock = true,
                 Items = new List<Item>()
                 {
                     Mod.Bacon
                 }
             },
-            new ItemSet()
+            new()
             {
                 Max = 1,
                 Min = 0,
-                RequiresUnlock= true,
+                RequiresUnlock = true,
                 Items = new List<Item>()
                 {
                     Mod.ChoppedCheese,
                 }
             }
-        };
-        public override List<ItemGroupView.ColourBlindLabel> Labels => new List<ItemGroupView.ColourBlindLabel>()
-        {
-                new()
-                {
-                    Text = "Bu",
-                    Item = Mod.ButterSlice
-                },
-                new()
-                {
-                    Text = "C",
-                    Item = Mod.ChoppedCheese
-                },
-                new()
-                {
-                    Text = "Bac",
-                    Item = Mod.Bacon
-                }
-        };
+        ];
+        public override List<ItemGroupView.ColourBlindLabel> Labels =>
+        [
+            new()
+            {
+                Text = "Bu",
+                Item = Mod.ButterSlice
+            },
+            new()
+            {
+                Text = "C",
+                Item = Mod.ChoppedCheese
+            },
+            new()
+            {
+                Text = "Bac",
+                Item = Mod.Bacon
+            }
+        ];
 
         public override void OnRegister(ItemGroup gameDataObject)
         {
@@ -92,17 +93,17 @@ namespace JacketPotatoMod.Customs.JacketPotato
             GameObject bacon = Prefab.GetChild("Bacon");
             foreach (var child in bacon.GetComponentsInChildren<Transform>())
             {
-                child.gameObject.ApplyMaterial("Bacon");
+                MaterialHelper.ApplyMaterial(child.gameObject, "Bacon");
             }
-            Prefab.GetChild("Cheese/SubMesh_0.002").ApplyMaterial("Cheese - Default");
-            Prefab.GetChild("Butter").ApplyMaterial("Butter");
-            Prefab.GetChild("Butter/butter pool").ApplyMaterial("Butter");
-            Prefab.GetChild("Butter/butter pool (1)").ApplyMaterial("Butter");
-            Prefab.GetChild("JacketPotato/Potato/SubMesh_0").ApplyMaterial("Cooked Potato - Roast");
-            Prefab.GetChild("JacketPotato/Potato/SubMesh_1").ApplyMaterial("Cooked Potato");
-            Prefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001").ApplyMaterial("Cooked Potato - Roast");
-            Prefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001").ApplyMaterial("Cooked Potato");
-            Prefab.GetChild("Plate/Plate/Cylinder").ApplyMaterial("Plate", "Plate - Ring");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Cheese/SubMesh_0.002"), "Cheese - Default");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Butter"), "Butter");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Butter/butter pool"), "Butter");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Butter/butter pool (1)"), "Butter");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("JacketPotato/Potato/SubMesh_0"), "Cooked Potato - Roast");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("JacketPotato/Potato/SubMesh_1"), "Cooked Potato");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001"), "Cooked Potato - Roast");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001"), "Cooked Potato");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Plate/Plate/Cylinder"), "Plate", "Plate - Ring");
             VisualEffectAsset asset = Resources.FindObjectsOfTypeAll<VisualEffectAsset>().Where(vfx => vfx.name == Mod.VFX_NAME).FirstOrDefault();
             if (asset != default)
             {
@@ -113,12 +114,10 @@ namespace JacketPotatoMod.Customs.JacketPotato
     }
     public class JacketPotatoWithButterItemGroupView : ItemGroupView
     {
-        private GameObject jacketPotato = null;
         internal void Setup(GameObject prefab)
         {
             // This tells which sub-object of the prefab corresponds to each component of the ItemGroup
             // All of these sub-objects are hidden unless the item is present
-            jacketPotato = prefab.GetChild("JacketPotato");
             ComponentGroups = new()
             {
                 new()

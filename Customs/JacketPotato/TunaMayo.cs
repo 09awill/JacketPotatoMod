@@ -4,6 +4,7 @@ using KitchenJacketPotato;
 using UnityEngine;
 using static KitchenData.ItemGroup;
 using System.Collections.Generic;
+using JacketPotatoMod.Utils;
 using KitchenLib.Utils;
 using Kitchen;
 using static Kitchen.ItemGroupView;
@@ -37,9 +38,9 @@ namespace JacketPotatoMod.Customs.JacketPotato
         };
         public override void OnRegister(ItemGroup gameDataObject)
         {
-            Prefab.GetChild("Cube/Beans").ApplyMaterial("Tuna");
-            Prefab.GetChild("Cylinder.001/BeansLiquid").ApplyMaterial("Tuna");
-            Prefab.GetChild("Cylinder").ApplyMaterial("Metal Dark");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Cube/Beans"), "Tuna");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Cylinder.001/BeansLiquid"), "Tuna");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Cylinder"), "Metal Dark");
 
         }
     }

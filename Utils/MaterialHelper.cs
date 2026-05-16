@@ -1,11 +1,12 @@
-﻿using KitchenLib.Customs;
+﻿using System.Collections.Generic;
+using KitchenLib.Customs;
 using KitchenLib.Utils;
-using System.Collections.Generic;
 using UnityEngine;
+
+namespace JacketPotatoMod.Utils;
 
 internal static class MaterialHelper
 {
-
     public static void ApplyMaterial<T>(this GameObject gameObject, Material[] materials) where T : Renderer
     {
         var comp = gameObject.GetComponent<T>();
@@ -54,7 +55,6 @@ internal static class MaterialHelper
     {
         gameObject.GetChild(childName).ApplyMaterial(GetMaterialArray(materials));
     }
-
 
     public static Material[] GetMaterialArray(params string[] materials)
     {

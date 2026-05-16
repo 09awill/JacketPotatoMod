@@ -5,7 +5,7 @@ using KitchenLib.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Unity.Entities;
+using JacketPotatoMod.Utils;
 using UnityEngine.VFX;
 
 namespace JacketPotatoMod.Customs.Cards
@@ -26,36 +26,36 @@ namespace JacketPotatoMod.Customs.Cards
             return 1;
         }
 
-        public override List<Dish.MenuItem> ResultingMenuItems => new List<Dish.MenuItem>
-        {
-            new Dish.MenuItem
+        public override List<Dish.MenuItem> ResultingMenuItems =>
+        [
+            new()
             {
                 Item = Mod.JacketPotatoWithTunaMayo,
                 Phase = MenuPhase.Main,
                 Weight = 1
             }
-        };
-        public override List<Unlock> HardcodedRequirements => new()
-        {
-            Mod.JacketPotatoWithBeansDish
-        };
-        public override HashSet<Item> MinimumIngredients => new HashSet<Item>
-        {
+        ];
+        
+        public override List<Unlock> HardcodedRequirements => [Mod.JacketPotatoWithBeansDish];
+        
+        public override HashSet<Item> MinimumIngredients =>
+        [
             Mod.TunaCan,
             Mod.Potato,
             Mod.Plate,
             Mod.Pot,
             Mod.Egg,
             Mod.Oil
-
-        };
-        public override HashSet<Process> RequiredProcesses => new HashSet<Process>
-        {
+        ];
+        
+        public override HashSet<Process> RequiredProcesses =>
+        [
             Mod.Cook,
             Mod.Chop,
             Mod.RequireOven
-        };
-        public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
+        ];
+        
+        public override Dictionary<Locale, string> Recipe => new()
         {
             { Locale.English, "Bake potato in oven and put on a plate, mix egg and combine with oil to make mayo, combine with tuna then with Jacket potato and serve!" },
             { Locale.French, "Cuisez la pomme de terre au four et mettez-la sur une assiette, mélangez l'œuf et combinez avec de l'huile pour faire de la mayonnaise, combinez avec le thon puis avec la pomme de terre en robe des champs et servez !" },
@@ -69,7 +69,6 @@ namespace JacketPotatoMod.Customs.Cards
             { Locale.ChineseTraditional, "在烤箱中烤土豆并放在盘子上，搅拌鸡蛋并与油混合制成蛋黄酱，与金枪鱼混合，然后与夹克土豆一起上菜！" },
             { Locale.Korean, "오븐에서 감자를 굽고 접시에 올려놓고, 계란을 섞어 오일과 섞어 마요네즈를 만들고 참치와 함께 섞은 후 자켓 감자와 함께 내세요!" },
             { Locale.Turkish, "Fırında patatesi pişirin ve tabağa koyun, yumurtayı karıştırın ve yağla birleştirerek mayonez yapın, ton balığı ile karıştırın, ardından ceket patatesle servis yapın!" },
-
         };
 
         public override List<(Locale, UnlockInfo)> InfoList => new()
@@ -92,13 +91,13 @@ namespace JacketPotatoMod.Customs.Cards
         public override void OnRegister(Dish gameDataObject)
         {
             gameDataObject.Difficulty = Difficulty();
-            IconPrefab.GetChild("JacketPotato/Potato/SubMesh_0").ApplyMaterial("Cooked Potato - Roast");
-            IconPrefab.GetChild("JacketPotato/Potato/SubMesh_1").ApplyMaterial("Cooked Potato");
-            IconPrefab.GetChild("Tuna/Cube/Beans").ApplyMaterial("Tuna");
-            IconPrefab.GetChild("Tuna/Cylinder.001/BeansLiquid").ApplyMaterial("Tuna");
-            IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001").ApplyMaterial("Cooked Potato - Roast");
-            IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001").ApplyMaterial("Cooked Potato");
-            IconPrefab.GetChild("Plate/Plate/Cylinder").ApplyMaterial("Plate", "Plate - Ring");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("JacketPotato/Potato/SubMesh_0"), "Cooked Potato - Roast");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("JacketPotato/Potato/SubMesh_1"), "Cooked Potato");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Tuna/Cube/Beans"), "Tuna");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Tuna/Cylinder.001/BeansLiquid"), "Tuna");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001"), "Cooked Potato - Roast");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001"), "Cooked Potato");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Plate/Plate/Cylinder"), "Plate", "Plate - Ring");
             VisualEffectAsset asset = Resources.FindObjectsOfTypeAll<VisualEffectAsset>().Where(vfx => vfx.name == Mod.VFX_NAME).FirstOrDefault();
             if (asset != default)
             {

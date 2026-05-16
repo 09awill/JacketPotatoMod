@@ -1,33 +1,27 @@
-﻿
-using IngredientLib.Ingredient.Providers;
-using JacketPotatoMod.Customs.Cards;
+﻿using JacketPotatoMod.Customs.Cards;
 using JacketPotatoMod.Customs.JacketPotato;
-using Kitchen;
 using KitchenData;
 using KitchenLib;
 using KitchenLib.Customs;
-using KitchenLib.Event;
 using KitchenLib.References;
 using KitchenLib.Utils;
 using KitchenMods;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using TMPro;
-using Unity.Entities;
+using KitchenLib.Interfaces;
 using UnityEngine;
 
 // Namespace should have "Kitchen" in the beginning
 namespace KitchenJacketPotato
 {
-    public class Mod : BaseMod, IModSystem
+    public class Mod : BaseMod, IAutoRegisterAll
     {
         // GUID must be unique and is recommended to be in reverse domain name notation
         // Mod Name is displayed to the player and listed in the mods menu
         // Mod Version must follow semver notation e.g. "1.2.3"
         public const string MOD_GUID = "Madvion.PlateUp.JacketPotato";
         public const string MOD_NAME = "Jacket Potato";
-        public const string MOD_VERSION = "0.1.8";
+        public const string MOD_VERSION = "0.1.9";
         public const string MOD_AUTHOR = "Madvion";
         public const string MOD_GAMEVERSION = ">=1.1.3";
         // Game version this mod is designed for in semver
@@ -48,29 +42,17 @@ namespace KitchenJacketPotato
         // Vanilla Processes
         internal static Process Cook => GetExistingGDO<Process>(ProcessReferences.Cook);
         internal static Process Chop => GetExistingGDO<Process>(ProcessReferences.Chop);
-        internal static Process Knead => GetExistingGDO<Process>(ProcessReferences.Knead);
         internal static Process RequireOven => GetExistingGDO<Process>(ProcessReferences.RequireOven);
-
-
-
+        
         // Vanilla Items
         internal static Item JacketPotato => GetExistingGDO<Item>(ItemReferences.RoastPotatoItem);
-
-        internal static Item Burnt => GetExistingGDO<Item>(ItemReferences.BurnedFood);
         internal static Item RawBeans => GetExistingGDO<Item>(ItemReferences.BeansIngredient);
-
         internal static Item Beans => GetExistingGDO<Item>(ItemReferences.BeansServing);
         internal static Item ChoppedCheese => GetExistingGDO<Item>(ItemReferences.CheeseGrated);
         internal static Item Cheese => GetExistingGDO<Item>(ItemReferences.Cheese);
-
         internal static Item Mayo => GetExistingGDO<Item>(ItemReferences.Mayonnaise);
         internal static Item Potato => GetExistingGDO<Item>(ItemReferences.Potato);
         internal static Item Pot => GetExistingGDO<Item>(ItemReferences.Pot);
-
-
-
-
-
         internal static Item Plate => Find<Item>(ItemReferences.Plate);
         internal static Item DirtyPlate => Find<Item>(ItemReferences.PlateDirty);
         internal static Item Egg => Find<Item>(ItemReferences.Egg);
@@ -80,46 +62,22 @@ namespace KitchenJacketPotato
         // Modded Items
         internal static Item Butter => Find<Item>(IngredientLib.References.GetIngredient("Butter"));
         internal static Item ButterSlice => Find<Item>(IngredientLib.References.GetSplitIngredient("Butter"));
-
         internal static Item Bacon => Find<Item>(IngredientLib.References.GetIngredient("Bacon"));
         internal static Item Pork => Find<Item>(IngredientLib.References.GetIngredient("pork"));
 
+        // Added Items
         internal static ItemGroup JacketPotatoWithBeans => GetModdedGDO<ItemGroup, JacketPotatoWithBeans>();
         internal static ItemGroup JacketPotatoWithButter => GetModdedGDO<ItemGroup, JacketPotatoWithButter>();
         internal static ItemGroup JacketPotatoWithTunaMayo => GetModdedGDO<ItemGroup, JacketPotatoWithTunaMayo>();
         internal static Item TunaCanOpened => GetModdedGDO<Item, TunaCanOpened>();
         internal static Item TunaCan => GetModdedGDO<Item, TunaCan>();
         internal static Item TunaMayo => GetModdedGDO<Item, TunaMayo>();
-
+        
+        // Providers
         internal static Appliance TunaCanProvider => GetModdedGDO<Appliance, TunaCanProvider>();
-
-
-
-
-
-
-
-
-
-        //internal static Item Foil => GetModdedGDO<Item, Foil>();
-
-
 
         // Modded Dishes
         internal static Dish JacketPotatoWithBeansDish => GetModdedGDO<Dish, JacketPotatoWithBeansDish>();
-        internal static Dish JacketPotatoWithButterDish => GetModdedGDO<Dish, JacketPotatoWithButterDish>();
-        internal static Dish JacketPotatoWithTunaMayoDish => GetModdedGDO<Dish, JacketPotatoWithTunaMayoDish>();
-
-
-
-        // Modded Appliances 
-
-        internal static Appliance ChickenProvider => GetModdedGDO<Appliance, ChickenProvider>();
-
-
-        //Processes
-        //public static Process WrapInFoil => GetModdedGDO<Process, WrapInFoil>();
-
 
         public Mod() : base(MOD_GUID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_GAMEVERSION, Assembly.GetExecutingAssembly()) { }
 
@@ -127,46 +85,7 @@ namespace KitchenJacketPotato
         {
             LogWarning($"{MOD_GUID} v{MOD_VERSION} in use!");
         }
-
-        private void AddGameData()
-        {
-            LogInfo("Attempting to register game data...");
-            // Dishes and Cards
-            
-            AddGameDataObject<JacketPotatoBaconToppingCard>();
-            AddGameDataObject<JacketPotatoCheeseToppingCard>();
-            AddGameDataObject<JacketPotatoWithBeansDish>();
-            AddGameDataObject<JacketPotatoWithButterDish>();
-            AddGameDataObject<JacketPotatoWithTunaMayoDish>();
-
-
-
-            // Items
-            //AddGameDataObject<JacketPotatoBaseDish>();
-            AddGameDataObject<JacketPotatoWithBeans>();
-            AddGameDataObject<JacketPotatoWithButter>();
-            AddGameDataObject<JacketPotatoWithTunaMayo>();
-            AddGameDataObject<TunaCan>();
-            AddGameDataObject<TunaCanOpened>();
-            AddGameDataObject<TunaMayo>();
-
-
-
-
-
-
-            //Providers
-            AddGameDataObject<TunaCanProvider>();
-
-
-            //Processes
-            LogInfo("Done loading game data.");
-        }
-
-        protected override void OnUpdate()
-        {
-        }
-
+        
         protected override void OnPostActivate(KitchenMods.Mod mod)
         {
             // TODO: Uncomment the following if you have an asset bundle.
@@ -177,64 +96,10 @@ namespace KitchenJacketPotato
             Bundle.LoadAllAssets<Texture2D>();
             Bundle.LoadAllAssets<Sprite>();
             Bundle.LoadAllAssets<AudioClip>();
-
-            /*
-            var spriteAsset = Bundle.LoadAsset<TMP_SpriteAsset>("Foil_Icon-01");
-            TMP_Settings.defaultSpriteAsset.fallbackSpriteAssets.Add(spriteAsset);
-            spriteAsset.material = Object.Instantiate(TMP_Settings.defaultSpriteAsset.material);
-            spriteAsset.material.mainTexture = Bundle.LoadAsset<Texture2D>("Foil_Icon-01Tex");
-            */
+            
             LogInfo("Done loading asset bundle.");
 
-            // Register custom GDOs
-            AddGameData();
-            //AudioUtils.AddProcessAudioClip(WrapInFoil.ID, AudioUtils.GetProcessAudioClip(GetExistingGDO<Process>(ProcessReferences.Cook).ID));
-            // Perform actions when game data is built
-            Events.BuildGameDataEvent += delegate (object s, BuildGameDataEventArgs args)
-            {
-                if (args.firstBuild)
-                {
-
-                }
-            };
-        }
-
-        internal class ComponentAccesserUtil : ItemGroupView
-        {
-            private static FieldInfo componentGroupField = ReflectionUtils.GetField<ItemGroupView>("ComponentGroups");
-            private static FieldInfo componentLabelsField = ReflectionUtils.GetField<ItemGroupView>("ComponentLabels");
-
-
-
-            public static void AddComponent(ItemGroupView viewToAddTo, params (Item item, GameObject gameObject)[] addedGroups)
-            {
-                List<ComponentGroup> componentGroups = componentGroupField.GetValue(viewToAddTo) as List<ComponentGroup>;
-                
-                foreach (var group in addedGroups)
-                {
-                    componentGroups.Add(new()
-                    {
-                        Item = group.item,
-                        GameObject = group.gameObject
-                    });
-                }
-                componentGroupField.SetValue(viewToAddTo, componentGroups);
-
-
-            }
-            public static void AddColourBlindLabels(ItemGroupView viewToAddTo, params (Item item, string colourBlindName)[] addedGroups)
-            {
-                List<ColourBlindLabel> componentGroups = componentLabelsField.GetValue(viewToAddTo) as List<ColourBlindLabel>;
-                foreach (var group in addedGroups)
-                {
-                    componentGroups.Add(new()
-                    {
-                        Item = group.item,
-                        Text = group.colourBlindName
-                    });
-                }
-                componentLabelsField.SetValue(viewToAddTo, componentGroups);
-            }
+            // Custom GDOs are now auto registered 
         }
 
         private static T1 GetModdedGDO<T1, T2>() where T1 : GameDataObject
@@ -260,12 +125,12 @@ namespace KitchenJacketPotato
             return GDOUtils.GetCastedGDO<T>(modName, name);
         }
         #region Logging
-        public static void LogInfo(string _log) { Debug.Log($"[{MOD_NAME}] " + _log); }
-        public static void LogWarning(string _log) { Debug.LogWarning($"[{MOD_NAME}] " + _log); }
-        public static void LogError(string _log) { Debug.LogError($"[{MOD_NAME}] " + _log); }
-        public static void LogInfo(object _log) { LogInfo(_log.ToString()); }
-        public static void LogWarning(object _log) { LogWarning(_log.ToString()); }
-        public static void LogError(object _log) { LogError(_log.ToString()); }
+        public static void LogInfo(string log) { Debug.Log($"[{MOD_NAME}] " + log); }
+        public static void LogWarning(string log) { Debug.LogWarning($"[{MOD_NAME}] " + log); }
+        public static void LogError(string log) { Debug.LogError($"[{MOD_NAME}] " + log); }
+        public static void LogInfo(object log) { LogInfo(log.ToString()); }
+        public static void LogWarning(object log) { LogWarning(log.ToString()); }
+        public static void LogError(object log) { LogError(log.ToString()); }
         #endregion
     }
 }

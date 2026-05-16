@@ -3,6 +3,7 @@ using KitchenJacketPotato;
 using UnityEngine;
 using KitchenData;
 using System.Collections.Generic;
+using JacketPotatoMod.Utils;
 using KitchenLib.Utils;
 
 namespace JacketPotatoMod.Customs.JacketPotato
@@ -15,24 +16,23 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override ItemStorage ItemStorageFlags => ItemStorage.StackableFood;
         public override string ColourBlindTag => "T";
         public override Appliance DedicatedProvider => Mod.TunaCanProvider;
-        public override List<Item.ItemProcess> Processes => new List<Item.ItemProcess>
-        {
-            new Item.ItemProcess
+        public override List<Item.ItemProcess> Processes =>
+        [
+            new()
             {
                 Duration = 1,
                 Process = Mod.Chop,
                 Result = Mod.TunaCanOpened
-            },
+            }
 
-        };
+
+        ];
         // Bean - Cooked, Bean - Juice Cooked, Bacon, Cooked Potato - Roast, Cooked Potato, Cheese - Default, Mayonnaise, Metal Dark
         public override void OnRegister(Item gameDataObject)
         {
-            Prefab.GetChild("Tin/Cylinder.002").ApplyMaterial("Metal Dark");
-            Prefab.GetChild("Tin/TinLAbel").ApplyMaterial("Blueberry 2");
-            Prefab.GetChild("Tin").ApplyMaterial("Metal Dark");
-
-
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Tin/Cylinder.002"), "Metal Dark");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Tin/TinLAbel"), "Blueberry 2");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Tin"), "Metal Dark");
         }
     }
 }

@@ -7,6 +7,7 @@ using KitchenData;
 using static KitchenData.ItemGroup;
 using System.Collections.Generic;
 using System.Linq;
+using JacketPotatoMod.Utils;
 using UnityEngine.VFX;
 using KitchenLib.References;
 
@@ -22,9 +23,9 @@ namespace JacketPotatoMod.Customs.JacketPotato
         public override Item DirtiesTo => Mod.DirtyPlate;
         public override bool CanContainSide => true;
 
-        public override List<ItemSet> Sets => new List<ItemSet>()
-        {
-            new ItemSet()
+        public override List<ItemSet> Sets =>
+        [
+            new()
             {
                 Max = 2,
                 Min = 2,
@@ -35,7 +36,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                     Mod.Plate
                 }
             },
-            new ItemSet()
+            new()
             {
                 Max = 1,
                 Min = 1,
@@ -44,29 +45,30 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 {
                     Mod.TunaMayo
                 }
-            },
-        };
-        public override List<ItemGroupView.ColourBlindLabel> Labels => new List<ItemGroupView.ColourBlindLabel>()
-        {
-                new()
-                {
-                    Text = "TM",
-                    Item = Mod.TunaMayo
-                }
-        };
+            }
+        ];
+        
+        public override List<ItemGroupView.ColourBlindLabel> Labels =>
+        [
+            new()
+            {
+                Text = "TM",
+                Item = Mod.TunaMayo
+            }
+        ];
+        
         // Bean - Cooked, Bean - Juice Cooked, Bacon, Cooked Potato - Roast, Cooked Potato, Cheese - Default, Mayonnaise, Metal Dark
-
         public override void OnRegister(ItemGroup gameDataObject)
         {
             Prefab.GetComponent<JacketPotatoWithTunaItemGroupView>()?.Setup(Prefab);
 
-            Prefab.GetChild("JacketPotato/Potato/SubMesh_0").ApplyMaterial("Cooked Potato - Roast");
-            Prefab.GetChild("JacketPotato/Potato/SubMesh_1").ApplyMaterial("Cooked Potato");
-            Prefab.GetChild("Tuna/Cube/Beans").ApplyMaterial("Tuna");
-            Prefab.GetChild("Tuna/Cylinder.001/BeansLiquid").ApplyMaterial("Tuna");
-            Prefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001").ApplyMaterial("Cooked Potato - Roast");
-            Prefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001").ApplyMaterial("Cooked Potato");
-            Prefab.GetChild("Plate/Plate/Cylinder").ApplyMaterial("Plate", "Plate - Ring");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("JacketPotato/Potato/SubMesh_0"), "Cooked Potato - Roast");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("JacketPotato/Potato/SubMesh_1"), "Cooked Potato");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Tuna/Cube/Beans"), "Tuna");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Tuna/Cylinder.001/BeansLiquid"), "Tuna");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001"), "Cooked Potato - Roast");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001"), "Cooked Potato");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Plate/Plate/Cylinder"), "Plate", "Plate - Ring");
             VisualEffectAsset asset = Resources.FindObjectsOfTypeAll<VisualEffectAsset>().Where(vfx => vfx.name == Mod.VFX_NAME).FirstOrDefault();
             if (asset != default)
             {

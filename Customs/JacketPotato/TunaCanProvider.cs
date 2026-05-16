@@ -1,11 +1,10 @@
 ﻿using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Utils;
-using System;
 using System.Collections.Generic;
+using JacketPotatoMod.Utils;
 using KitchenJacketPotato;
 using UnityEngine;
-using Unity.Entities.UniversalDelegates;
 
 namespace JacketPotatoMod.Customs.JacketPotato
 {
@@ -41,15 +40,15 @@ namespace JacketPotatoMod.Customs.JacketPotato
         {
             for(var i = 0 ; i < 5; i++) 
             {
-                Prefab.GetChild($"Tin.00{i + 1}").ApplyMaterial("Metal Dark");
-                Prefab.GetChild($"Tin.00{i+1}/TinLAbel").ApplyMaterial("Blueberry 2");
-                Prefab.GetChild($"Tin.00{i+1}/Cylinder").ApplyMaterial("Metal Dark");
+                MaterialHelper.ApplyMaterial(Prefab.GetChild($"Tin.00{i + 1}"), "Metal Dark");
+                MaterialHelper.ApplyMaterial(Prefab.GetChild($"Tin.00{i+1}/TinLAbel"), "Blueberry 2");
+                MaterialHelper.ApplyMaterial(Prefab.GetChild($"Tin.00{i+1}/Cylinder"), "Metal Dark");
             }
             Mod.LogWarning("Done tins");
-            Prefab.GetChild("Base").ApplyMaterial("Wood - Corkboard");
-            Prefab.GetChild("Planks/SubMesh_0.005").ApplyMaterial("Wood - Default");
-            Prefab.GetChild("Planks 2/SubMesh_0.004").ApplyMaterial("Wood - Default");
-            Prefab.GetChild("Supports/SubMesh_0.006").ApplyMaterial("Wood - Default");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Base"), "Wood - Corkboard");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Planks/SubMesh_0.005"), "Wood - Default");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Planks 2/SubMesh_0.004"), "Wood - Default");
+            MaterialHelper.ApplyMaterial(Prefab.GetChild("Supports/SubMesh_0.006"), "Wood - Default");
         }
     }
 }

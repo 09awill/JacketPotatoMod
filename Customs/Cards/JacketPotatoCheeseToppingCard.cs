@@ -3,7 +3,6 @@ using KitchenData;
 using KitchenLib.Customs;
 using KitchenLib.Utils;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace JacketPotatoMod.Customs.Cards
 {
@@ -25,28 +24,24 @@ namespace JacketPotatoMod.Customs.Cards
             return 1;
         }
 
-        public override HashSet<Dish.IngredientUnlock> IngredientsUnlocks => new()
-        {
-            new Dish.IngredientUnlock
+        public override HashSet<Dish.IngredientUnlock> IngredientsUnlocks =>
+        [
+            new()
             {
                 Ingredient = Mod.ChoppedCheese,
                 MenuItem = Mod.JacketPotatoWithBeans
             },
-            new Dish.IngredientUnlock
+            new()
             {
                 Ingredient = Mod.ChoppedCheese,
                 MenuItem = Mod.JacketPotatoWithButter
-            },
-        };
-        public override HashSet<Item> MinimumIngredients => new HashSet<Item>
-        {
-            Mod.Cheese
-        };
-        public override HashSet<Process> RequiredProcesses => new HashSet<Process>
-        {
-            Mod.Chop,
-        };
-        public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
+            }
+
+        ];
+        public override HashSet<Item> MinimumIngredients => [Mod.Cheese];
+        public override HashSet<Process> RequiredProcesses => [Mod.Chop];
+        
+        public override Dictionary<Locale, string> Recipe => new()
         {
             { Locale.English, "Chop cheese and add to Jacket Potato!" },
             { Locale.French, "Hachez le fromage et ajoutez-le à la pomme de terre en robe des champs !" },

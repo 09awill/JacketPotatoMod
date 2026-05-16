@@ -5,7 +5,7 @@ using KitchenLib.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.Profiling;
+using JacketPotatoMod.Utils;
 using UnityEngine.VFX;
 
 namespace JacketPotatoMod.Customs.Cards
@@ -28,8 +28,8 @@ namespace JacketPotatoMod.Customs.Cards
         {
             return 1;
         }
-        public override List<string> StartingNameSet => new List<string>
-        {
+        public override List<string> StartingNameSet =>
+        [
             "Get your jacket you've pulled",
             "Spuds 'n' Hugs",
             "Jacket in the Box",
@@ -42,31 +42,35 @@ namespace JacketPotatoMod.Customs.Cards
             "Butter Believe It",
             "Elspudsie",
             "Boil 'em, Mash 'em, Stick 'em in a stew!"
-        };
-        public override List<Dish.MenuItem> ResultingMenuItems => new List<Dish.MenuItem>
-        {
-            new Dish.MenuItem
+        ];
+        
+        public override List<Dish.MenuItem> ResultingMenuItems =>
+        [
+            new()
             {
                 Item = Mod.JacketPotatoWithBeans,
                 Phase = MenuPhase.Main,
                 Weight = 1
             }
-        };
-        public override HashSet<Item> MinimumIngredients => new HashSet<Item>
-        {
+        ];
+        
+        public override HashSet<Item> MinimumIngredients =>
+        [
             Mod.RawBeans,
             Mod.Potato,
             Mod.Plate,
-            Mod.Pot,
+            Mod.Pot
 
-        };
-        public override HashSet<Process> RequiredProcesses => new HashSet<Process>
-        {
+        ];
+        
+        public override HashSet<Process> RequiredProcesses =>
+        [
             Mod.Cook,
             Mod.Chop,
             Mod.RequireOven
-        };
-        public override Dictionary<Locale, string> Recipe => new Dictionary<Locale, string>
+        ];
+        
+        public override Dictionary<Locale, string> Recipe => new()
         {
             { Locale.English, "Bake potato in oven and put on a plate, cook beans, Combine and serve!" },
             { Locale.French, "Cuisez la pomme de terre au four et mettez-la sur une assiette, faites cuire les haricots, combinez et servez !" },
@@ -106,32 +110,32 @@ namespace JacketPotatoMod.Customs.Cards
             gameDataObject.Difficulty = Difficulty();
             GameObject bacon = IconPrefab.GetChild("Bacon");
             foreach(var child in bacon.GetComponentsInChildren<Transform>()) {
-                child.gameObject.ApplyMaterial("Bacon");
+                MaterialHelper.ApplyMaterial(child.gameObject, "Bacon");
             }
             Mod.LogWarning("Bacon");
-            IconPrefab.GetChild("Cheese/SubMesh_0.002").ApplyMaterial("Cheese - Default");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Cheese/SubMesh_0.002"), "Cheese - Default");
             Mod.LogWarning("Cheese");
 
-            IconPrefab.GetChild("Beans/Cube/Beans").ApplyMaterial("Bean - Cooked");
-            IconPrefab.GetChild("Beans/Beans (1)").ApplyMaterial("Bean - Cooked");
-            IconPrefab.GetChild("Beans/Beans (2)").ApplyMaterial("Bean - Cooked");
-            IconPrefab.GetChild("Beans/BeansLiquid").ApplyMaterial("Bean - Juice Cooked");
-            IconPrefab.GetChild("Beans/Cylinder.001/BeansLiquid").ApplyMaterial("Bean - Juice Cooked");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Beans/Cube/Beans"), "Bean - Cooked");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Beans/Beans (1)"), "Bean - Cooked");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Beans/Beans (2)"), "Bean - Cooked");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Beans/BeansLiquid"), "Bean - Juice Cooked");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Beans/Cylinder.001/BeansLiquid"), "Bean - Juice Cooked");
             Mod.LogWarning("Beans");
 
-            IconPrefab.GetChild("JacketPotato/Potato/SubMesh_0").ApplyMaterial("Cooked Potato - Roast");
-            IconPrefab.GetChild("JacketPotato/Potato/SubMesh_1").ApplyMaterial("Cooked Potato");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("JacketPotato/Potato/SubMesh_0"), "Cooked Potato - Roast");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("JacketPotato/Potato/SubMesh_1"), "Cooked Potato");
             Mod.LogWarning("Potato 1");
 
-            IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001").ApplyMaterial("Cooked Potato - Roast");
-            IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001").ApplyMaterial("Cooked Potato");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_0.001"), "Cooked Potato - Roast");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("JacketPotato/Potato.001/SubMesh_1.001"), "Cooked Potato");
             Mod.LogWarning("Potato 2");
 
-            IconPrefab.GetChild("Plate/Plate/Cylinder").ApplyMaterial("Plate", "Plate - Ring");
+            MaterialHelper.ApplyMaterial(IconPrefab.GetChild("Plate/Plate/Cylinder"), "Plate", "Plate - Ring");
             Mod.LogWarning("Plate");
 
-            VisualEffectAsset asset = Resources.FindObjectsOfTypeAll<VisualEffectAsset>().Where(vfx => vfx.name == Mod.VFX_NAME).FirstOrDefault();
-            if (asset != default)
+            VisualEffectAsset asset = Resources.FindObjectsOfTypeAll<VisualEffectAsset>().FirstOrDefault(vfx => vfx.name == Mod.VFX_NAME);
+            if (asset != null)
             {
                 VisualEffect vfx = IconPrefab.GetChild("Steam").AddComponent<VisualEffect>();
                 vfx.visualEffectAsset = asset;

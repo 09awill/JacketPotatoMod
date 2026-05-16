@@ -25,22 +25,24 @@ namespace JacketPotatoMod.Customs.Cards
             return 1;
         }
 
-        public override HashSet<Dish.IngredientUnlock> IngredientsUnlocks => new()
-        {
-            new Dish.IngredientUnlock
+        public override HashSet<Dish.IngredientUnlock> IngredientsUnlocks =>
+        [
+            new()
             {
                 Ingredient = Mod.Bacon,
                 MenuItem = Mod.JacketPotatoWithBeans
             },
-            new Dish.IngredientUnlock
+
+            new()
             {
                 Ingredient = Mod.Bacon,
                 MenuItem = Mod.JacketPotatoWithButter
-            },
-        };
+            }
+
+        ];
         public override HashSet<Item> MinimumIngredients => new HashSet<Item>
         {
-            Mod.Bacon
+            Mod.Pork
         };
         public override HashSet<Process> RequiredProcesses => new HashSet<Process>
         {

@@ -95,7 +95,7 @@ namespace JacketPotatoMod.Customs.JacketPotato
                 },
             };
         }
-        public override void PerformUpdate(int item_id, ItemList components)
+        public override void PerformUpdate(int item_id, ItemList components, bool isOrder)
         {
             base.PerformUpdate(item_id, components);
             int potCount = 0;
